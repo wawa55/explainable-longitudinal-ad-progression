@@ -1,0 +1,38 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata below."
+
+title: "Explainable Longitudinal Deep Learning for Time-Dependent Alzheimer's Disease Progression Prediction from Serial 3D MRI"
+
+type: software
+
+authors:
+  - family-names: "Nhlapho"
+    given-names: "Wandile Juddy"
+    orcid: "https://orcid.org/0000-0002-8685-8395"
+
+repository-code: "https://github.com/wawa55/explainable-longitudinal-ad-progression"
+
+url: "https://github.com/wawa55/explainable-longitudinal-ad-progression"
+
+license: "MIT"
+
+abstract: >-
+  Reproducible research code for longitudinal 3D MRI analysis of
+  Alzheimer's disease progression. The repository contains the controlled
+  B0-B2 benchmark workflow, the longitudinal CNN-Transformer M0 reference
+  architecture, Integrated-Gradients explainability analyses, component
+  ablation analyses, and frozen external validation on OASIS-3.
+
+keywords:
+  - Alzheimer's disease
+  - longitudinal MRI
+  - deep learning
+  - 3D MRI
+  - CNN
+  - Transformer
+  - survival analysis
+  - Integrated Gradients
+  - explainable artificial intelligence
+  - external validation
+  - ADNI
+  - OASIS-3

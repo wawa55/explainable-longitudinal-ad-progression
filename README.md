@@ -1,8 +1,8 @@
-\# Explainable Longitudinal Deep Learning for Time-Dependent Alzheimer's Disease Progression Prediction from Serial 3D MRI
+\# Explainable Longitudinal Deep Learning for Alzheimer's Disease Progression
 
 
 
-This repository contains the reproducible analysis code accompanying the study:
+Reproducible research code accompanying the study:
 
 
 
@@ -10,13 +10,9 @@ This repository contains the reproducible analysis code accompanying the study:
 
 
 
-\*\*Author:\*\* Wandile Juddy Nhlapho  
+Author: \*\*Wandile Juddy Nhlapho\*\*  
 
-\*\*ORCID:\*\* 0000-0002-8685-8395
-
-
-
-\---
+ORCID: 0000-0002-8685-8395
 
 
 
@@ -24,29 +20,21 @@ This repository contains the reproducible analysis code accompanying the study:
 
 
 
-This study investigates time-dependent Alzheimer's disease progression prediction from longitudinal structural 3D MRI.
+This repository contains the analysis code used to investigate time-dependent Alzheimer's disease progression prediction from longitudinal structural MRI.
 
 
 
-The study was designed around four complementary questions:
+The study contains two complementary experimental branches that should be interpreted separately:
 
 
 
-1\. Does longitudinal modelling provide a clear predictive advantage over using only the latest available MRI?
+1\. a controlled internal benchmark comparing B0, B1, and B2 architectures; and
 
-2\. Does the longitudinal CNN-Transformer use information from multiple historical MRI visits when generating progression-risk predictions?
-
-3\. How much do continuous-time encoding, Transformer-based temporal modelling, and longitudinal imaging contribute to the behaviour of the full longitudinal model?
-
-4\. Does the frozen longitudinal CNN-Transformer transport to an independent external cohort without adaptation?
+2\. a longitudinal CNN-Transformer reference model (M0) used for explainability, component ablation, and independent external validation.
 
 
 
-These questions were addressed using separate but complementary benchmark, explainability, ablation, and external-validation analyses.
-
-
-
-\---
+The repository contains analysis code only. Raw ADNI and OASIS-3 imaging or clinical data are not redistributed.
 
 
 
@@ -54,107 +42,59 @@ These questions were addressed using separate but complementary benchmark, expla
 
 
 
-\### ADNI development cohort
+\### Controlled benchmark: B0-B2
 
 
 
-The internal study used longitudinal data from the Alzheimer's Disease Neuroimaging Initiative (ADNI).
+Three architectures were compared using the frozen ADNI experimental protocol:
 
 
 
-The locked analysis cohort contained:
+\- \*\*B0:\*\* latest-MRI 3D CNN.
 
+\- \*\*B1:\*\* longitudinal 3D CNN with continuous-time encoding and masked mean pooling.
 
+\- \*\*B2:\*\* longitudinal 3D CNN with continuous-time encoding and GRU aggregation.
 
-\- 972 participants
 
-\- 4,247 MRI examinations
 
-\- 3,634 dynamic prediction landmarks
+Model selection within this benchmark was performed using validation negative log-likelihood before frozen-test evaluation.
 
-\- 326 participants with progression events
 
-\- 646 censored participants
 
+B0 was selected within the B0-B2 benchmark. This selection should not be interpreted as defining B0 as the M0 longitudinal reference architecture used in the separate explainability and external-validation analyses.
 
 
-The participant-level split was fixed using seed 2026:
 
+\### Longitudinal reference model: M0
 
 
-| Split | Participants | Landmarks |
 
-|---|---:|---:|
-
-| Training | 680 | 2,530 |
-
-| Validation | 146 | 521 |
-
-| Test | 146 | 583 |
-
-
-
-The test cohort remained frozen until final evaluation.
-
-
-
-\---
-
-
-
-\## Dynamic Survival Prediction
-
-
-
-Prediction was formulated using dynamic landmarks.
-
-
-
-For each participant and prediction landmark, only MRI examinations available up to that landmark were used.
-
-
-
-The discrete survival framework used five 12-month intervals:
-
-
-
-\- 0-12 months
-
-\- 12-24 months
-
-\- 24-36 months
-
-\- 36-48 months
-
-\- 48-60 months
-
-
-
-The primary prediction horizons were 12, 24, and 36 months.
-
-
-
-The 48- and 60-month horizons were retained as secondary analyses.
-
-
-
-\---
-
-
-
-\## MRI Processing
-
-
-
-MRI processing followed a deterministic workflow designed to preserve the locked experimental protocol.
-
-
-
-The original ADNI image grid was approximately:
+M0 is the full longitudinal CNN-Transformer architecture:
 
 
 
 ```text
 
-197 x 233 x 189 voxels
+Serial 3D MRI
+
+&#x20;     |
+
+Shared 3D CNN encoder
+
+&#x20;     |
+
+Continuous-time encoding
+
+&#x20;     |
+
+3-layer Transformer
+
+&#x20;     |
+
+Longitudinal pooling
+
+&#x20;     |
+
+Discrete-time survival head
 
