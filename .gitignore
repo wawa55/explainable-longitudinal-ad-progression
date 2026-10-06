@@ -1,0 +1,175 @@
+# ============================================================
+# ADNI Longitudinal Progression
+# Repository exclusion rules
+# ============================================================
+
+# ------------------------------------------------------------
+# Python cache / compiled files
+# ------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ------------------------------------------------------------
+# Virtual environments
+# ------------------------------------------------------------
+.venv/
+venv/
+env/
+ENV/
+conda-env/
+.ipynb_checkpoints/
+
+# ------------------------------------------------------------
+# IDE / operating-system files
+# ------------------------------------------------------------
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ------------------------------------------------------------
+# Environment variables / credentials / secrets
+# ------------------------------------------------------------
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*
+secrets*
+token*
+auth*
+.netrc
+
+# ------------------------------------------------------------
+# Neuroimaging data
+#
+# ADNI and OASIS-3 source imaging must NOT be distributed
+# through this repository.
+# ------------------------------------------------------------
+*.nii
+*.nii.gz
+*.dcm
+*.dicom
+*.ima
+*.mgz
+*.mgh
+
+# ------------------------------------------------------------
+# Raw or processed study data
+# ------------------------------------------------------------
+raw/
+processed/
+data/
+external_data/
+01_raw*/
+02_raw*/
+03_preprocessed*/
+04_processed*/
+downloads/
+batch_downloads/
+exact_locked_t1_downloads/
+
+# ------------------------------------------------------------
+# ADNI / OASIS-3 local data directories
+# ------------------------------------------------------------
+OASIS3_external/01_raw_selected/
+OASIS3_external/02_preprocessed/
+OASIS3_external/03_preprocessed/
+OASIS3_external/raw/
+OASIS3_external/processed/
+
+# ------------------------------------------------------------
+# Model checkpoints and serialized models
+# ------------------------------------------------------------
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+*.joblib
+
+# ------------------------------------------------------------
+# Archives / large download packages
+# ------------------------------------------------------------
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+*.rar
+
+# ------------------------------------------------------------
+# Potential participant-level / clinical source files
+#
+# Public summary tables can later be explicitly added under
+# results_summary/ after manual review.
+# ------------------------------------------------------------
+*.xml
+*.xlsx
+*.xls
+*.sav
+
+# ------------------------------------------------------------
+# Logs and temporary files
+# ------------------------------------------------------------
+*.log
+*.tmp
+*.temp
+*.bak
+*.backup
+*BACKUP*
+*BEFORE_FIX*
+*WRONG*
+logs/
+_step43_workers/
+
+# ------------------------------------------------------------
+# Generated Python caches
+# ------------------------------------------------------------
+**/__pycache__/
+
+# ------------------------------------------------------------
+# Large/generated attribution outputs
+# ------------------------------------------------------------
+attributions/
+xai/
+08_results/
+external_evaluation/
+external_inference/
+external_validation_results/
+
+# ------------------------------------------------------------
+# Local security/audit files created during repository cleanup
+# ------------------------------------------------------------
+github_security_scan.txt
+local_paths_before_cleaning.txt
+clean_paths.py
+
+# ------------------------------------------------------------
+# Local manifests/catalogues that may encode restricted data
+# ------------------------------------------------------------
+manifests/
+metadata/
+catalog_batch_lists/
+catalog_batch_lists_step28/
+xnat_catalogs/
+step32_generated_scripts/
+
+# ------------------------------------------------------------
+# Do not commit local download inventories
+# ------------------------------------------------------------
+*download_manifest*
+*download_inventory*
+*download_reconciliation*
+*raw_inventory*
+*local_inventory*
